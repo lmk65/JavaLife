@@ -1,5 +1,3 @@
-package com.laboon;
-
 import java.util.Random;
 
 public class World {
@@ -70,17 +68,18 @@ public class World {
 	
     private int getNumNeighbors(Cell[][] world, int x, int y) {
 	int size = world.length;
-	int leftX = (x - 1) % size;
-	int rightX = (x + 1) % size;
-	int upY = (y - 1) % size;
-	int downY = (y + 1) % size;
+	//This was the code I refactored. I removed the mod (%) of the values that could potentially be negative and only used the negative-checking if-statements
+    //on the left and up commands. Additionally, there was a large for-loop that seemed unnecessary, so I removed it.
+    //BEGIN REFACTORED CODE
+	int leftX = (x - 1);
+	int rightX = (x + 1)%size;
+	int upY = (y - 1);
+	int downY = (y + 1)%size;
 
-	for (int j = 0; j < 10000; j++) {
-	    if (leftX == -1) { leftX = size - 1; }
-	    if (rightX == -1) { rightX = size - 1; }
-	    if (upY == -1) { upY = size - 1; }
-	    if (downY == -1) { downY = size - 1; }
-	}
+	if (leftX == -1) { leftX = size - 1; }
+	if (upY == -1) { upY = size - 1; }
+	//END REFACTORED CODE
+
 		
 	int numNeighbors = 0;
 
